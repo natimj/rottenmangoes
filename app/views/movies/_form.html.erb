@@ -1,4 +1,4 @@
-<%= form_for @movie do |m|%>
+<%= form_for @movie, :html => {:multipart => true} do |m|%>
   <% if @movie.errors.any? %>
     <div>
     <%= pluralize(@movie.errors.count, "error") %> prevented this movie from being submitted:
@@ -27,8 +27,12 @@
     <%= m.number_field :runtime_in_minutes %>
   </div>
   <div>
-    <%= m.label :poster_image_url %><br>
-    <%= m.text_field :poster_image_url %>
+      <%= m.label :avatar, "Image" %></br>
+      <%= m.file_field :avatar %>
+  </div>
+  <div>
+      <%= m.label :remote_avatar_url, "or image URL" %></br>
+      <%= m.text_field :remote_avatar_url %>
   </div>
   <div>
     <%= m.label :release_date %><br>
