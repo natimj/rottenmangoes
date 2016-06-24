@@ -2,8 +2,19 @@
       # Prevent CSRF attacks by raising an exception.
       # For APIs, you may want to use :null_session instead.
       protect_from_forgery with: :exception
+      
+      # helper_method :admin?
+  
 
       protected
+
+      def admin_access
+        unless current_user.admin?
+          flash[:error] = "unauthorized access"
+          redirect_to movies_path
+          false
+        end
+      end
 
       def restrict_access
         if !current_user

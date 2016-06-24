@@ -1,0 +1,8 @@
+<% @users.each do |user| %>
+  <h1><%= link_to user.full_name, admin_user_path(user) %></h1>
+  <h4><%= user.email %></h4>
+  <h4>Admin? <%=user.admin?.to_s %></h4>
+  <br>
+  <hr>
+  <br>
+<% end %>
